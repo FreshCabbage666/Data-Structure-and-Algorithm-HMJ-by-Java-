@@ -120,7 +120,7 @@ public class SingleLinkedListDemo
 			System.out.println("Á´±íÎª¿Õ");
 			return;
 		}
-		Stack<HeroNode> stack = new Stack();
+		Stack<HeroNode> stack = new Stack<HeroNode>();
 		HeroNode temp = head.next;
 		while (temp != null)
 		{

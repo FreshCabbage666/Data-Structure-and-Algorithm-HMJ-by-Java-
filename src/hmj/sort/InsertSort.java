@@ -23,9 +23,10 @@ public class InsertSort
 		time2 = System.currentTimeMillis();
 		time3 = ((double)time2 - (double)time1)/1000;
 		System.out.println("耗时" + time3 + "秒");
-
+		
 	}
 	
+	//自实现(寻找下标和移动元素分开操作并不是一个很好的选择)
 	public static void insert(int[] array)
 	{
 		for (int i = 0; i < array.length - 1; i++) 
@@ -51,6 +52,22 @@ public class InsertSort
 			}
 			
 		}
+	}
+	
+	//标准版
+	public static void insertS(int[] array)
+	{
+		if (array.length <= 1) return;
+		
+		for (int insertIndex = 1; insertIndex < array.length; insertIndex++)
+		{
+			int insertValue = array[insertIndex];
+			while (insertIndex > 0 && array[insertIndex - 1] > insertValue)
+			{
+				array[insertIndex] = array[--insertIndex];
+			}
+			array[insertIndex] = insertValue;
+		}	
 	}
 
 }

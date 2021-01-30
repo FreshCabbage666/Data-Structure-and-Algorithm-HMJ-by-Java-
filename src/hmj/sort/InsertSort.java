@@ -59,15 +59,24 @@ public class InsertSort
 	{
 		if (array.length <= 1) return;
 		
-		for (int insertIndex = 1; insertIndex < array.length; insertIndex++)
+//		for (int insertIndex = 1; insertIndex < array.length; insertIndex++)
+//		{
+//			int insertValue = array[insertIndex];
+//			while (insertIndex > 0 && array[insertIndex - 1] > insertValue)
+//			{
+//				array[insertIndex] = array[--insertIndex];
+//			}
+//			array[insertIndex] = insertValue;
+//		}	
+		//可读性好点
+		for (int i = 1; i < array.length; i++)
 		{
+			int insertIndex = i;
 			int insertValue = array[insertIndex];
-			while (insertIndex > 0 && array[insertIndex - 1] > insertValue)
-			{
-				array[insertIndex] = array[--insertIndex];
-			}
+			for (; insertIndex - 1 >= 0 && array[insertIndex - 1] > insertValue; insertIndex--)
+				array[insertIndex] = array[insertIndex - 1];
 			array[insertIndex] = insertValue;
-		}	
+		}
 	}
 
 }

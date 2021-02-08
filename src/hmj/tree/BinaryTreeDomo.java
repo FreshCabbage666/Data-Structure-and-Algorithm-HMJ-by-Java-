@@ -12,14 +12,22 @@ public class BinaryTreeDomo
 		HeroNode hn4 = new HeroNode(4, "h4");
 		HeroNode hn5 = new HeroNode(5, "h5");
 		
+		//test
+//		HeroNode hn6 = new HeroNode(6, "h6");
+//		HeroNode hn7 = new HeroNode(7, "h7");
+		
 		root.left = hn2;
 		root.right = hn3;
 		hn3.left = hn5;
 		hn3.right = hn4;
 		
+		//test
+//		hn2.left = hn6;
+//		hn2.right = hn7;
+		
 		BinaryTree bt = new BinaryTree(root);
 		
-		//测试遍历
+		//测试遍历★★★★★★★★★★★★★★★★★★★★★★
 //		//先序
 //		//bt.preOrder();
 //		//中序
@@ -28,17 +36,25 @@ public class BinaryTreeDomo
 //		bt.backOrder();
 		
 		
-		//测试查找
+		//测试查找★★★★★★★★★★★★★★★★★★★★★★
 		//先序
 		//HeroNode ht = bt.preFind(5);
 		//中序
 		//HeroNode ht = bt.midFind(5);
 		//后序
-		HeroNode ht = bt.backFind(5);
-		if (ht == null)
-			System.out.println("没找到");
-		else
-			System.out.println(ht.id + ", " + ht.name);
+//		HeroNode ht = bt.backFind(5);
+//		if (ht == null)
+//			System.out.println("没找到");
+//		else
+//			System.out.println(ht.id + ", " + ht.name);
+		
+		
+		//测试删除★★★★★★★★★★★★★★★★★★★★★★
+		//bt.preOrder();
+		bt.delNode(5);
+		bt.preOrder();
+		bt.delNode(3);
+		bt.preOrder();
 		
 	}
 }
@@ -107,6 +123,24 @@ class BinaryTree
 			return null;
 		
 		HeroNode temp = this.root.backFind(id);
+		return temp;
+	}
+
+	//删除结点
+	public HeroNode delNode(int id)
+	{
+		if (this.root == null)
+		{
+			System.out.println("空树！");
+			return null;
+		}
+		
+		HeroNode temp = null;
+		temp = this.root.delNode(id);
+		if (this.root == temp)
+		{
+			this.root = null; //清空整个树
+		}
 		return temp;
 	}
 }
@@ -249,4 +283,40 @@ class HeroNode
 		
 		return ret;
 	}
+
+	//删除结点
+	public HeroNode delNode(int id)
+	{
+		HeroNode ret = null;
+		
+		if (this.left != null)
+		{
+			ret = this.left.delNode(id);
+		}
+		
+		if (ret != null && this.left.id == id) //这里的&&后面条件加的太重要了！多思考思考！
+		{
+			this.left = null;
+			return ret;
+		}
+		
+		if (this.right != null)
+		{
+			ret = this.right.delNode(id);
+		}
+		
+		if (ret != null && this.right.id == id)
+		{
+			this.right = null;
+			return ret;
+		}
+		
+		if (this.id == id)
+		{
+			ret = this;
+		}
+		return ret;
+	}
+
+	
 }

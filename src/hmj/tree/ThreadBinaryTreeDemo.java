@@ -26,8 +26,12 @@ public class ThreadBinaryTreeDemo
 		//System.out.println(h4.left.name);
 		//System.out.println(h5.left.name);
 		//System.out.println(h5.right.name);
-		System.out.println(h2.left.name);
-		System.out.println(h2.right);
+//		System.out.println(h2.left.name);
+//		System.out.println(h2.right);
+		
+		
+		//遍历线索化二叉树
+		tbt.threadMidOrder();
 	}
 
 }
@@ -82,6 +86,29 @@ class ThreadBinaryTree extends BinaryTree
 			threadNode((ThreadHeroNode)node.right);
 		
 	}
+
+	//中序遍历线索化二叉树
+	public void threadMidOrder()
+	{
+		ThreadHeroNode temp = (ThreadHeroNode)root;
+		while (temp != null) //这个循环用得秒啊
+		{
+			while (temp.leftType == 0)
+			{
+				temp = (ThreadHeroNode)temp.left;
+			}
+			System.out.println(temp.id + ", " + temp.name);
+				
+			while (temp.rightType == 1)
+			{
+				temp = (ThreadHeroNode)temp.right;
+				System.out.println(temp.id + ", " + temp.name);
+			}
+			temp = (ThreadHeroNode)temp.right;
+		}
+		
+	}
+	
 }
 
 
